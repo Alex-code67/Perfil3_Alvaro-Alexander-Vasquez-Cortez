@@ -12,10 +12,6 @@ Muestra la información del estudiante y consume la API pública de Rick and Mor
 | Sección | B1                               |
 | Grupo   | 1                                |
 
-## Video demostrativo
-
-[Ver video demostrativo](PEGA_AQUI_EL_ENLACE_DEL_VIDEO)
-
 ## Descargar el APK
 
 [Descargar APK (Expo Build)](https://expo.dev/accounts/alex-code67/projects/rickandmorty-dex/builds/c5af4237-1ca4-4f6d-ac39-ef2d8457365e)
