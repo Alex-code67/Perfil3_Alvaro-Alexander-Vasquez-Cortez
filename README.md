@@ -1,20 +1,24 @@
-# Perfil 3 — Ian Orellana
+# Perfil 3 — Álvaro Alexander Vásquez Cortez
 
 Aplicación móvil hecha con **React Native + Expo** para la evaluación práctica del Perfil 3.
-Muestra la información del estudiante y consume la API pública de Dragon Ball para listar sus planetas.
+Muestra la información del estudiante y consume la API pública de Rick and Morty para listar sus personajes.
 
 ## Datos del estudiante
 
-| Dato    | Valor        |
-| ------- | ------------ |
-| Nombre  | Ian Orellana |
-| Carnet  | 20240211     |
-| Sección | B            |
-| Grupo   | 1            |
+| Dato    | Valor                            |
+| ------- | -------------------------------- |
+| Nombre  | Álvaro Alexander Vásquez Cortez  |
+| Carnet  | 20240408                         |
+| Sección | B1                               |
+| Grupo   | 1                                |
+
+## Video demostrativo
+
+[Ver video demostrativo](PEGA_AQUI_EL_ENLACE_DEL_VIDEO)
 
 ## Descargar el APK
 
-[Descargar Perfil3_IanOrellana.apk](apk/Perfil3_IanOrellana.apk?raw=1)
+[Descargar APK (Expo Build)](https://expo.dev/accounts/alex-code67/projects/rickandmorty-dex/builds/c5af4237-1ca4-4f6d-ac39-ef2d8457365e)
 
 También se puede escanear este código QR desde el dispositivo Android:
 
@@ -22,20 +26,20 @@ También se puede escanear este código QR desde el dispositivo Android:
 
 ## Funcionalidades
 
-- **Splash screen e icono personalizados** (esfera del dragón de 4 estrellas).
+- **Splash screen e icono personalizados** (portal verde de Rick and Morty).
 - **Pantalla 1 – Información del estudiante:** nombre, carnet, sección y grupo, con un botón para ir a la pantalla 2.
-- **Pantalla 2 – Planetas:** lista de planetas con nombre, imagen, descripción y estado (destruido / intacto). Incluye indicador de carga, mensaje de error con botón de reintento y "deslizar para actualizar".
+- **Pantalla 2 – Personajes:** lista de personajes con nombre, imagen, descripción (especie, género, origen y última ubicación) y estado (vivo / muerto / desconocido). Incluye indicador de carga, mensaje de error con botón de reintento, "deslizar para actualizar" y carga de más personajes al llegar al final de la lista (paginación).
 
 ## API utilizada
 
-`GET https://dragonball-api.com/api/planets`
+`GET https://rickandmortyapi.com/api/character?page=N`
 
-De cada planeta se usan los campos `name`, `image`, `description` e `isDestroyed`.
+De cada personaje se usan los campos `name`, `image`, `status`, `species`, `gender`, `origin` y `location`.
 
 ## Tecnologías
 
-- Expo SDK 57 / React Native 0.86
-- React Navigation 7 (`@react-navigation/native` + `@react-navigation/native-stack`)
+- Expo / React Native
+- React Navigation (`@react-navigation/native` + `@react-navigation/native-stack`)
 - `fetch` con `async/await`
 
 ## Estructura del proyecto
@@ -48,7 +52,7 @@ src/
     routes.js               Nombres de las rutas
   screens/
     HomeScreen.js           Pantalla 1: información del estudiante
-    PlanetsScreen.js        Pantalla 2: lista de planetas
+    CharactersScreen.js     Pantalla 2: lista de personajes
   components/
     Card.js                 Tarjeta reutilizable (imagen, título, etiqueta, descripción)
     InfoRow.js              Fila "etiqueta: valor"
@@ -57,7 +61,7 @@ src/
     ErrorMessage.js         Mensaje de error con reintento
   hooks/
     useFetchData.js         Hook genérico de consumo de API (data, loading, error, refetch)
-    usePlanets.js           Hook que usa useFetchData y prepara los planetas para la UI
+    useCharacters.js        Hook que usa useFetchData, pagina y prepara los personajes para la UI
   constants/
     api.js                  URL de la API
     student.js              Datos del estudiante
@@ -78,22 +82,10 @@ Luego se escanea el código QR con Expo Go o se presiona `a` para abrirlo en un 
 
 ## Cómo generar el APK
 
-**Opción 1 – EAS Build** (perfil `preview` de `eas.json`, que genera un `.apk`):
-
 ```bash
 npm install -g eas-cli
 eas login
 eas build -p android --profile preview
 ```
 
-Al terminar, EAS entrega un enlace para descargar el APK e instalarlo en el dispositivo.
-
-**Opción 2 – Build local** (requiere Android SDK y JDK instalados):
-
-```bash
-npx expo prebuild --platform android
-cd android
-./gradlew assembleRelease
-```
-
-El APK queda en `android/app/build/outputs/apk/release/app-release.apk`.
+El perfil `preview` de `eas.json` genera un `.apk`. Al terminar, EAS entrega un enlace para descargar el APK e instalarlo en el dispositivo.
